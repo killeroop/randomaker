@@ -18,7 +18,7 @@ const string TRN_PROVIDER =
 #ifdef WINDOWS
     R"(Microsoft Strong Cryptographic Provider)";
 #else
-    R"(/dev/urandom)";
+    R"(/dev/urandom)"; // "/dev/random" is very slow
 #endif
 
 
@@ -122,19 +122,19 @@ void driver(int argc, char* argv[])
 
     try {
         if (not check_args()) {
-            fprintf(stderr, "Usage: mkrand TYPE TOTAL ARG1 ARG2\n");
-            fprintf(stderr, "Option TOTAL: Total of random numbers to be created\n");
+            fprintf(stderr, "Usage: randomaker TYPE TOTAL ARG1 ARG2\n");
+            fprintf(stderr, "Option TOTAL:\n  Total of random numbers to be created\n");
             fprintf(stderr, "Option TYPE:\n");
-            fprintf(stderr, "-u : Uniform distribution, ARG1 is range-left, ARG2 is range-right\n");
-            fprintf(stderr, "-n : Normal distribution, ARG1 is mean, ARG2 is sigma\n");
-            fprintf(stderr, "-b : Binomial distribution, ARG1 is targ, ARG2 is parg\n");
-            fprintf(stderr, "-e : Exponential distribution, ARG1 is lambda, ARG2 is useless\n");
-            fprintf(stderr, "-g : Gamma distribution, ARG1 is alpha, ARG2 is beta\n");
-            fprintf(stderr, "-l : Bernoulli distribution, ARG1 and ARG2 are useless\n");
-            fprintf(stderr, "-o : Geometric distribution, ARG1 and ARG2 are useless\n");
-            fprintf(stderr, "-c : Cauchy distribution, ARG1 is median, ARG2 is sigma\n");
-            fprintf(stderr, "-p : Poisson distribution, ARG1 is mean, ARG2 is useless\n");
-            fprintf(stderr, "-t : Same as -u, but creat True Random Number(non-pseudo)\n");
+            fprintf(stderr, "  -u : Uniform distribution, ARG1 is range-left, ARG2 is range-right\n");
+            fprintf(stderr, "  -n : Normal distribution, ARG1 is mean, ARG2 is sigma\n");
+            fprintf(stderr, "  -b : Binomial distribution, ARG1 is targ, ARG2 is parg\n");
+            fprintf(stderr, "  -e : Exponential distribution, ARG1 is lambda, ARG2 is useless\n");
+            fprintf(stderr, "  -g : Gamma distribution, ARG1 is alpha, ARG2 is beta\n");
+            fprintf(stderr, "  -l : Bernoulli distribution, ARG1 and ARG2 are useless\n");
+            fprintf(stderr, "  -o : Geometric distribution, ARG1 and ARG2 are useless\n");
+            fprintf(stderr, "  -c : Cauchy distribution, ARG1 is median, ARG2 is sigma\n");
+            fprintf(stderr, "  -p : Poisson distribution, ARG1 is mean, ARG2 is useless\n");
+            fprintf(stderr, "  -t : Same as -u, but creat True Random Number(non-pseudo)\n\n");
             quick_exit(EXIT_FAILURE);
         }
     }
@@ -153,5 +153,7 @@ int main(int argc, char* argv[], char* env[])
     driver(argc, argv);
     return 0;
 }
+
+
 
 
