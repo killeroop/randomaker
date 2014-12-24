@@ -82,7 +82,8 @@ void create_random_number(const char rtype, const uint32_t total, const double p
         default:
             break;
     }
-    std::for_each(&results[0], &results[total], [](double v){printf("%.9lf\n", v);});
+    std::for_each(&results[0], &results[total], [](double v){fprintf(stdout, "%.9lf\n", v);});
+    fflush(stdout);
 }
 
 
