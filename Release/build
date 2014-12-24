@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+make clean;
+make all;
+chmod 777 ./randomaker
+sudo cp -v ./randomaker /usr/local/bin/
