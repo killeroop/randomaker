@@ -118,6 +118,11 @@ void driver(int argc, char* argv[])
         if (0 == total) {
             return false;
         }
+        if (rtype == "-u" or rtype == "-t") {
+            if (param1 >= param2) {
+                return false;
+            }
+        }
         return true;
     };
 
