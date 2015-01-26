@@ -73,7 +73,7 @@ void create_random_number(const char rtype, const uint32_t total, const double p
             std::generate(&results[0], &results[total], [&]() {return mkr(u01);});
             break;
         }
-        case 't': { //true random number on uniform
+        case 'r': { //true random number on uniform
             random::random_device rdevice(TRN_PROVIDER);
             random::uniform_real_distribution<double> mkr(param1, param2);
             std::generate(&results[0], &results[total], [&]() {return mkr(rdevice);});
@@ -104,7 +104,7 @@ void driver(int argc, char* argv[])
             return false;
         }
         bool valid_rtype = false;
-        for (auto& s : string("unbelagocpt")) {
+        for (auto& s : string("unbelagocpr")) {
             if (s == rtype[1]) {
                 valid_rtype = true;
             }
@@ -118,7 +118,7 @@ void driver(int argc, char* argv[])
         if (0 == total) {
             return false;
         }
-        if (rtype == "-u" or rtype == "-t") {
+        if (rtype == "-u" or rtype == "-r") {
             if (param1 >= param2) {
                 return false;
             }
@@ -140,7 +140,7 @@ void driver(int argc, char* argv[])
             fprintf(stderr, "  -o : Geometric distribution, ARG1 and ARG2 are useless\n");
             fprintf(stderr, "  -c : Cauchy distribution, ARG1 is median, ARG2 is sigma\n");
             fprintf(stderr, "  -p : Poisson distribution, ARG1 is mean, ARG2 is useless\n");
-            fprintf(stderr, "  -t : Same as -u, but creat True Random Number(non-pseudo)\n\n");
+            fprintf(stderr, "  -r : Same as -u, but creat True(Real) Random Number(non-pseudo)\n\n");
             quick_exit(EXIT_FAILURE);
         }
     }
